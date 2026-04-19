@@ -2,6 +2,13 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
+const DEMO_USERS = [
+  { label: '🛡️ Admin', email: 'admin@iiitm.ac.in', password: 'admin123' },
+  { label: '👤 Sahil', email: 'sahil@iiitm.ac.in', password: 'student123' },
+  { label: '👤 Rohit', email: 'rohit@iiitm.ac.in', password: 'student123' },
+  { label: '👤 Aman', email: 'aman@iiitm.ac.in', password: 'student123' },
+]
+
 export default function Login() {
   const { login } = useApp()
   const navigate = useNavigate()
@@ -15,20 +22,13 @@ export default function Login() {
     e.preventDefault()
     setError('')
     setLoading(true)
-    setTimeout(() => {
-      const result = login(form.email, form.password)
-      if (result.success) {
-        navigate(result.user.isAdmin ? '/dashboard' : '/dashboard')
-      } else {
-        setError(result.error)
-      }
-      setLoading(false)
-    }, 400)
-  }
-
-  const fillDemo = (type) => {
-    if (type === 'admin') setForm({ email: 'admin@iiitm.ac.in', password: 'admin123' })
-    else setForm({ email: 'sahil@iiitm.ac.in', password: 'student123' })
+    const result = login(form.email, form.password)
+    if (result.success) {
+      navigate('/dashboard')
+    } else {
+      setError(result.error)
+    }
+    setLoading(false)
   }
 
   return (
@@ -67,8 +67,23 @@ export default function Login() {
         <div className="demo-section">
           <p className="demo-label">Quick demo login:</p>
           <div className="demo-buttons">
-            <button className="btn btn-demo" onClick={() => fillDemo('student')}>👤 Student Demo</button>
-            <button className="btn btn-demo" onClick={() => fillDemo('admin')}>🛡️ Admin Demo</button>
+            {DEMO_USERS.map(u => (
+              <button
+                key={u.email}
+                className="btn btn-demo"
+                onClick={() => setForm({ email: u.email, password: u.password })}
+              >
+                {u.label}
+              </button>
+            ))}
+          </div>
+          <div className="demo-creds">
+            {DEMO_USERS.map(u => (
+              <div key={u.email} className="demo-cred-row">
+                <span className="demo-cred-name">{u.label}</span>
+                <span className="demo-cred-info">{u.email} / {u.password}</span>
+              </div>
+            ))}
           </div>
         </div>
 
