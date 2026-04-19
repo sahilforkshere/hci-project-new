@@ -18,9 +18,23 @@ app.use('/api/complaints', complaintRoutes)
 app.use('/api/feedback', feedbackRoutes)
 app.use('/api/notifications', notificationRoutes)
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('MongoDB connected')
-    app.listen(process.env.PORT || 8000, () => console.log(`Server running on port ${process.env.PORT || 5000}`))
+let connected = false
+async function connectDB() {
+  if (!connected) {
+    await mongoose.connect(process.env.MONGO_URI)
+    connected = true
+  }
+}
+
+app.use(async (req, res, next) => {
+  try { await connectDB(); next() } catch (err) { res.status(500).json({ error: 'DB connection failed' }) }
+})
+
+// Local dev
+if (process.env.NODE_ENV !== 'production') {
+  connectDB().then(() => {
+    app.listen(process.env.PORT || 8000, () => console.log(`Server running on port ${process.env.PORT || 8000}`))
   })
-  .catch(err => { console.error('MongoDB connection error:', err); process.exit(1) })
+}
+
+export default app
