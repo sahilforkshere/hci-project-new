@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>HCI User Interview Report 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#111;color:#fff;font-size:13px;line-height:1.6;}
+
+  /* COVER */
+  .cover{background:#111;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:60px;page-break-after:always;}
+  .cover-tag{color:#aaa;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:60px;}
+  .cover-title{font-size:64px;font-weight:900;line-height:1.05;margin-bottom:24px;}
+  .cover-sub{color:#aaa;font-size:15px;max-width:480px;line-height:1.7;margin-bottom:60px;}
+  .cover-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .cover-meta-item label{font-size:9px;letter-spacing:2px;color:#e8a020;text-transform:uppercase;display:block;margin-bottom:6px;}
+  .cover-meta-item span{font-size:13px;font-weight:600;}
+  .cover-badge{background:#e8a020;color:#111;font-size:48px;font-weight:900;width:100px;height:100px;display:flex;align-items:center;justify-content:center;border-radius:12px;margin-left:auto;}
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .cover-footer{font-size:10px;color:#555;display:flex;justify-content:space-between;border-top:1px solid #222;padding-top:20px;}
+
+  /* TOC */
+  .toc{background:#111;min-height:100vh;padding:60px;page-break-after:always;}
+  .toc h1{font-size:52px;font-weight:900;line-height:1.05;margin-bottom:48px;}
+  .toc h1 span{color:#e8a020;}
+  .toc-item{display:flex;align-items:center;gap:24px;padding:18px 0;border-bottom:1px dashed #222;}
+  .toc-num{color:#e8a020;font-size:28px;font-weight:900;width:48px;flex-shrink:0;}
+  .toc-name{font-size:17px;font-weight:700;}
+  .toc-role{color:#888;font-size:12px;margin-top:2px;}
+  .toc-badge{margin-left:auto;background:#c0392b;color:#fff;font-size:10px;padding:4px 10px;border-radius:4px;white-space:nowrap;}
+  .toc-footer{font-size:10px;color:#555;display:flex;justify-content:space-between;border-top:1px solid #222;padding-top:20px;margin-top:40px;}
+
+  /* INTERVIEW */
+  .interview{background:#111;min-height:100vh;padding:60px;page-break-after:always;position:relative;}
+  .int-tag{color:#e8a020;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .int-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;}
+  .int-name{font-size:44px;font-weight:900;}
+  .int-role{color:#888;font-size:12px;margin-top:4px;}
+  .int-big-num{font-size:120px;font-weight:900;color:#222;line-height:1;user-select:none;}
+  .int-quote{border-left:3px solid #e8a020;padding:16px 20px;margin-bottom:32px;font-style:italic;color:#ccc;font-size:14px;line-height:1.7;background:#1a1a1a;border-radius:0 8px 8px 0;}
+  .int-q{margin-bottom:24px;}
+  .int-q-label{background:#e8a020;color:#111;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+  .int-q-text{font-weight:700;font-size:13px;margin-bottom:8px;color:#fff;}
+  .int-q-answer{color:#bbb;font-size:12.5px;line-height:1.75;}
+  .int-footer{font-size:10px;color:#555;display:flex;justify-content:space-between;border-top:1px solid #222;padding-top:20px;margin-top:40px;}
+
+  /* SUMMARY */
+  .summary{background:#111;padding:60px;page-break-after:always;}
+  .summary h1{font-size:44px;font-weight:900;line-height:1.05;margin-bottom:8px;}
+  .summary h1 span{color:#e8a020;}
+  .summary-sub{color:#888;font-size:12px;margin-bottom:40px;}
+  .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .summary-card{background:#1a1a1a;border-radius:10px;padding:20px;}
+  .summary-card-num{background:#e8a020;color:#111;font-size:13px;font-weight:900;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .summary-card h3{font-size:13px;font-weight:700;margin-bottom:8px;}
+  .summary-card p{color:#999;font-size:11.5px;line-height:1.7;}
+  .summary-footer{font-size:10px;color:#555;display:flex;justify-content:space-between;border-top:1px solid #222;padding-top:20px;margin-top:40px;}
+  .report-note{color:#666;font-size:10px;margin-top:32px;font-style:italic;}
+
+  @media print{
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .cover,.toc,.interview,.summary{page-break-after:always;}
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <div class="cover-tag">HCI Project · 2026</div>
+    <div class="cover-top">
+      <div>
+        <div class="cover-title">Student<br>Complaint &<br>Feedback<br>System</div>
+        <div class="cover-sub">User Interviews &amp; Usability Research Report<br><br>
+        A qualitative study of student experiences with institutional complaint and feedback mechanisms, conducted through structured interviews with six participants across engineering, technology, and medical institutions.</div>
+      </div>
+      <div class="cover-badge">6</div>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><label>Project Type</label><span>HCI Design &amp; Research Project</span></div>
+      <div class="cover-meta-item"><label>Interview Period</label><span>March 2026</span></div>
+      <div class="cover-meta-item"><label>Participants</label><span>6 Candidates</span></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>Dept. of Computer Science &amp; Engineering</span>
+    <span>Academic Use Only · Confidential</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h1>TABLE OF<br><span>CONTENTS</span></h1>
+  <div class="toc-item"><div class="toc-num">01</div><div><div class="toc-name">Soham Patil</div><div class="toc-role">IMT Student · IIITM Gwalior</div></div><div class="toc-badge">Interview 1 of 6</div></div>
+  <div class="toc-item"><div class="toc-num">02</div><div><div class="toc-name">Arnav Jagtap</div><div class="toc-role">CSE Student · IIT Gandhinagar</div></div><div class="toc-badge">Interview 2 of 6</div></div>
+  <div class="toc-item"><div class="toc-num">03</div><div><div class="toc-name">Aditya Kumar</div><div class="toc-role">Chemical Engg. · IIT Guwahati</div></div><div class="toc-badge">Interview 3 of 6</div></div>
+  <div class="toc-item"><div class="toc-num">04</div><div><div class="toc-name">Pratham Jaishwal</div><div class="toc-role">ECE Student · IIITM Gwalior</div></div><div class="toc-badge">Interview 4 of 6</div></div>
+  <div class="toc-item"><div class="toc-num">05</div><div><div class="toc-name">Shrawan Kolekar</div><div class="toc-role">CSE Student · COEP Pune</div></div><div class="toc-badge">Interview 5 of 6</div></div>
+  <div class="toc-item"><div class="toc-num">06</div><div><div class="toc-name">Arin Singh</div><div class="toc-role">MBBS Student · AIIMS Rishikesh</div></div><div class="toc-badge">Interview 6 of 6</div></div>
+  <div class="toc-item"><div class="toc-num" style="color:#fff;">07</div><div><div class="toc-name">Summary of Changes</div><div class="toc-role">Platform Improvements &amp; Recommendations</div></div></div>
+  <div class="toc-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>2026</span></div>
+</div>
+
+<!-- INTERVIEW 1 -->
+<div class="interview">
+  <div class="int-tag">Interview 1 of 6</div>
+  <div class="int-header">
+    <div>
+      <div class="int-name">Soham Patil</div>
+      <div class="int-role">IMT Student · Tech Enthusiast · Active Grievance Filer</div>
+      <div class="int-role">3rd Year · IIITM Gwalior — Integrated M.Tech (IMT)</div>
+    </div>
+    <div class="int-big-num">01</div>
+  </div>
+  <div class="int-quote">"I have filed three complaints this semester and had no idea what happened to any of them. It felt like shouting into a void."</div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Walk us through how you currently raise a complaint at your institute. Where does the process break down?</div>
+    <div class="int-q-answer">It is almost entirely verbal right now. I go to my faculty advisor, explain the issue, and wait. Sometimes I am redirected to the HOD, sometimes to the admin office — each time I repeat the same story. There is no ticket, no confirmation that my complaint even exists. Two weeks later I might bump into the same person in a corridor and they say 'oh yes I forgot about that.' The absence of any written trail is the core problem. If a portal generated a complaint ID the moment I submitted, I would at least know the system received it.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">When we showed you the prototype — the submission form with category tags and priority levels — what was your first reaction?</div>
+    <div class="int-q-answer">The category tags immediately made sense. Right now when I talk to someone verbally, the first five minutes are spent just establishing what kind of problem it is — academic, hostel, lab, administration. Having those as clickable tags removes that entirely. The priority selector worried me slightly though. Every student thinks their complaint is urgent. You need a mechanism where the system itself validates or caps the priority, otherwise everything will be marked Critical and the word loses meaning.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">What feature do you feel is most missing from what we have described?</div>
+    <div class="int-q-answer">A real-time status tracker that I can check at any time — not just emails that I might miss. Think of it like a delivery tracking page: 'Complaint received → Assigned to HOD → Under review → Resolution communicated.' Right now I have no visibility after submission. Just seeing the complaint move from one stage to the next would reduce my anxiety enormously. I would also want an escalation button — if a complaint is untouched for more than five days, I should be able to bump it up to a higher authority without filling out a new form.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Would you use this platform for feedback as well, not just complaints? What would motivate you to leave honest feedback?</div>
+    <div class="int-q-answer">Yes, but only if anonymity is genuine and enforced. I have good things to say about certain professors and genuinely critical things about certain lab conditions. Right now I say neither because I do not trust that it stays private. If the system shows me a clear statement — 'your identity is not visible to faculty or administration when you submit feedback' — and that is backed by actual design rather than just a sentence on a page, I will use it. Also, knowing that feedback led to a visible change — like an announcement saying 'based on student feedback, lab hours have been extended' — would make me believe the system is real.</div>
+  </div>
+  <div class="int-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Interview 1 of 6</span></div>
+</div>
+
+<!-- INTERVIEW 2 -->
+<div class="interview">
+  <div class="int-tag">Interview 2 of 6</div>
+  <div class="int-header">
+    <div>
+      <div class="int-name">Arnav Jagtap</div>
+      <div class="int-role">CSE Student · Systems Thinker · Privacy-Conscious</div>
+      <div class="int-role">2nd Year · IIT Gandhinagar — B.Tech Computer Science</div>
+    </div>
+    <div class="int-big-num">02</div>
+  </div>
+  <div class="int-quote">"Good concept. But if the anonymity is cosmetic and the routing logic is naive, students will distrust it within a month and never return."</div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">From a systems design standpoint, what is the most technically challenging part of building this portal correctly?</div>
+    <div class="int-q-answer">Genuine anonymity while maintaining accountability is a hard problem. If a student submits a complaint about a specific professor and the complaint includes enough contextual detail, the professor can often identify who filed it even without seeing the name. True anonymity requires stripping metadata, generalising phrasing on the backend, and ensuring that the admin view never reveals information that can be reverse-traced. Most student portals I have seen claim anonymity but store a direct user-to-complaint mapping that any database admin can query. The technical architecture needs to separate identity from content at the storage level, not just the display level.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">How should the complaint routing logic work? What breaks in a simple rule-based system?</div>
+    <div class="int-q-answer">Simple keyword routing will fail immediately. If I write 'the projector in the lab does not work,' a naive system might route that to IT, but actually it should go to the lab-in-charge or the department coordinator. Context matters. A slightly smarter approach uses a hybrid: a primary category tag that the student selects, combined with secondary routing rules per department. You also need a fallback — if the designated respondent has not acted within 72 hours, the system auto-escalates to their supervisor. Without automatic escalation, complaints will pile up unread in someone's inbox indefinitely.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">What data should and should not the platform collect from students?</div>
+    <div class="int-q-answer">Collect only what is necessary for resolution. Roll number for verification — not displayed in the complaint view. Department and year for routing — shown only to the resolver, not in aggregate public reports. Device or browser data — never. The feedback form should have a strict opt-in for identification: the default must be anonymous. Any analytics dashboard shown to administration should aggregate to department level, never individual level. If a student can see that 'only 3 people from ECE second year submitted feedback this week' and they are one of them, the anonymity is already broken.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Even at a well-resourced institution like IIT Gandhinagar, would you use this? What gap does it actually solve?</div>
+    <div class="int-q-answer">Yes, and the gap it solves is documentation and accountability. Even at well-resourced institutions, verbal complaints disappear. A friend of mine reported a serious equipment safety issue in the electronics lab verbally three times — nothing happened. The moment there is a written, timestamped record with an assigned complaint ID, the social contract changes. The institution can no longer claim ignorance. That accountability layer is genuinely missing everywhere, not just at under-resourced colleges.</div>
+  </div>
+  <div class="int-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Interview 2 of 6</span></div>
+</div>
+
+<!-- INTERVIEW 3 -->
+<div class="interview">
+  <div class="int-tag">Interview 3 of 6</div>
+  <div class="int-header">
+    <div>
+      <div class="int-name">Aditya Kumar</div>
+      <div class="int-role">Chemical Engg. Student · Dept. Representative · Practical Problem-Solver</div>
+      <div class="int-role">3rd Year · IIT Guwahati — B.Tech Chemical Engineering</div>
+    </div>
+    <div class="int-big-num">03</div>
+  </div>
+  <div class="int-quote">"Most of my complaints are about lab infrastructure. Right now they either vanish or get resolved three months later with no explanation. Either outcome is demoralising."</div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Tell us about a specific complaint experience that illustrated what is broken about the current process.</div>
+    <div class="int-q-answer">Last semester a fume hood in our advanced lab had a malfunctioning exhaust fan for six weeks. We reported it verbally to the lab assistant on week one. He said he would forward it. On week three I sent an email to the department office — no reply. On week six a faculty member finally noticed during a practical session and it was fixed within two days. Six weeks of potential safety risk, two verbal reports and one email, zero responses — and the resolution came from a faculty member noticing incidentally, not from any complaint I filed. That gap in the system is exactly what you are solving.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Given that your complaints are often about physical infrastructure and safety, what specific features matter most to you?</div>
+    <div class="int-q-answer">First, a severity or safety flag. A broken fan in a chemical lab is categorically different from a broken projector in a lecture hall. The system needs a way for me to mark something as a safety concern, and that marking should trigger a fundamentally different response SLA — not five days, but same day. Second, photo and document attachments are non-negotiable for infrastructure complaints. A photograph of a broken piece of equipment conveys the severity in a way text never can. Third, I want to be able to see who the complaint was assigned to — not just a generic 'under review' status.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">How do you think the feedback module should work for departments like Chemical Engineering that have very specific and technical concerns?</div>
+    <div class="int-q-answer">The feedback form needs discipline-specific sub-categories. A generic 'Infrastructure' tag does not tell the administration whether the issue is with lab equipment, reagent quality, safety apparatus, or ventilation. For engineering departments, feedback should have a second-tier taxonomy: Equipment Maintenance, Reagent Availability, Safety Compliance, Lab Scheduling, Faculty Accessibility. That granularity is what turns feedback from noise into signal.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Would you recommend this portal to your batchmates? What would hold them back from using it?</div>
+    <div class="int-q-answer">I would recommend it immediately. The thing that would hold people back is fear of identification for sensitive complaints — particularly complaints about faculty behaviour or internal departmental politics. You need to make the anonymity mechanism not just real but visibly real. Show students, during submission, a statement like: 'Your identity has been separated from this complaint. The reviewer will see only your department and year.' Make it a UI moment, not a footnote in a privacy policy. That one screen would probably double adoption.</div>
+  </div>
+  <div class="int-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Interview 3 of 6</span></div>
+</div>
+
+<!-- INTERVIEW 4 -->
+<div class="interview">
+  <div class="int-tag">Interview 4 of 6</div>
+  <div class="int-header">
+    <div>
+      <div class="int-name">Pratham Jaishwal</div>
+      <div class="int-role">ECE Student · Hostel Representative · Interface-Focused</div>
+      <div class="int-role">2nd Year · IIITM Gwalior — B.Tech Electronics &amp; Communication</div>
+    </div>
+    <div class="int-big-num">04</div>
+  </div>
+  <div class="int-quote">"I have been hostel rep for a year. The hardest part is not solving problems — it is convincing students to report them at all. That trust problem is what your platform needs to fix first."</div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">As a hostel representative, you collect complaints on behalf of other students. How does the current process fail both you and them?</div>
+    <div class="int-q-answer">I maintain a WhatsApp group where hostel residents post issues — noise, water supply, food quality, maintenance. I then compile these and present them verbally at the monthly warden meeting. By the time I present them, half the students have forgotten they even raised the issue, and there is no record of what was promised. The whole pipeline is informal, undocumented, and entirely dependent on me being present and active. If a batch rep is lazy or busy, the complaints simply disappear. A structured portal would replace this fragile human chain with a documented, persistent process.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">What UI decisions would make students actually open the app rather than just posting in the WhatsApp group?</div>
+    <div class="int-q-answer">Three things. One: it has to be faster than typing in WhatsApp. If logging a complaint takes more than ninety seconds, students will not bother. Tap category, write two sentences, attach photo, submit — that is the maximum acceptable flow. Two: the visual feedback after submission has to feel meaningful. Not a plain text confirmation — a proper card with a complaint number, current status indicator, and estimated response time. Three: notifications have to be push notifications, not email. Students do not check email but they check their phones.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">For hostel and mess-specific complaints, what categories and features are most important?</div>
+    <div class="int-q-answer">You need granularity at the hostel level. 'Infrastructure' is too broad. I need: Water Supply, Electrical Issues, Furniture &amp; Fixtures, Cleanliness &amp; Pest Control, Mess Food Quality, Mess Hygiene, Night Canteen, Security &amp; Access. Each of these goes to a different person. Also, add a trending complaints view — if fifteen people have filed the same complaint about cold water in the morning, that should surface as a collective issue, not fifteen separate tickets. Aggregation turns individual gripes into institutional pressure.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">What would make you, as a representative, use the administrative dashboard rather than your current manual process?</div>
+    <div class="int-q-answer">A batch view where I can see all active complaints from my hostel, their status, and the responsible person — without seeing private identifying details. Right now I have to chase fifteen different people individually to track progress. If the dashboard shows me one consolidated view, I do my job in ten minutes instead of an hour. Also, a resolution timeline graph — how long are complaints typically open, which categories have the worst resolution times — would let me prioritise which issues to escalate at the monthly meeting.</div>
+  </div>
+  <div class="int-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Interview 4 of 6</span></div>
+</div>
+
+<!-- INTERVIEW 5 -->
+<div class="interview">
+  <div class="int-tag">Interview 5 of 6</div>
+  <div class="int-header">
+    <div>
+      <div class="int-name">Shrawan Kolekar</div>
+      <div class="int-role">CSE Student · UX-Aware Developer · Accessibility Advocate</div>
+      <div class="int-role">Final Year · COEP Technological University, Pune — B.Tech CSE</div>
+    </div>
+    <div class="int-big-num">05</div>
+  </div>
+  <div class="int-quote">"Every student portal I have used was built for the administration, not the student. Make this one feel like it was designed for the person submitting, not the person receiving."</div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">From an HCI standpoint, what are the most common usability failures you have seen in institutional portals?</div>
+    <div class="int-q-answer">Three recurring failures. First, information architecture that reflects the organisation's internal structure rather than the student's mental model. A student does not think 'this is an academic administration issue' — they think 'my marks are wrong.' The navigation needs to start from the student's problem, not the department hierarchy. Second, no progressive disclosure — forms that ask for ten fields upfront when three would suffice for most cases. Third, no recovery from errors. If I fill out a long complaint form and the session times out, all my text is gone. Auto-save drafts are a basic courtesy that most portals ignore.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">The platform has a feedback rating system — students rate services from 1 to 5. What are the HCI risks of a pure numerical rating?</div>
+    <div class="int-q-answer">Numerical ratings without context produce useless data. If the mess gets a 2.1 average, the administration knows students are unhappy but has no actionable information about why. You need a hybrid: a star rating for quick sentiment capture, followed by optional micro-questions — 'What specifically was the issue? Select all that apply: Food temperature, Portion size, Variety, Cleanliness, Queue management.' Those micro-questions take ten seconds to answer but produce categorised, actionable data. Also, show students their own past ratings — that builds a feedback history and encourages consistent behaviour over time.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">What accessibility considerations should be built into the complaint portal from the start?</div>
+    <div class="int-q-answer">Screen reader compatibility — all form fields need proper ARIA labels, not just placeholder text. Keyboard navigation — the entire complaint submission flow should be completable without a mouse. Colour contrast — the status indicators like 'Resolved' in green or 'Pending' in red must pass WCAG AA contrast ratios. Regional language support — even a basic Hindi interface would dramatically expand the comfort level of students whose primary language is not English. And font size control — a simple accessibility toggle in the header is a small build but a significant gesture.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">If you were doing a usability test on this portal before launch, what tasks would you assign participants and what metrics would you track?</div>
+    <div class="int-q-answer">Four core tasks. One: submit a complaint about mess food quality with a photo attached — measure time-on-task and error rate. Two: find the status of a complaint submitted five days ago — measure clicks to find it and whether participants looked in the right place. Three: leave anonymous feedback about a professor — measure whether they trusted the anonymity indicator. Four: find all resolved complaints from the last month — measures discoverability of historical records. Track task completion rate, time-on-task, and a post-task confidence rating.</div>
+  </div>
+  <div class="int-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Interview 5 of 6</span></div>
+</div>
+
+<!-- INTERVIEW 6 -->
+<div class="interview">
+  <div class="int-tag">Interview 6 of 6</div>
+  <div class="int-header">
+    <div>
+      <div class="int-name">Arin Singh</div>
+      <div class="int-role">MBBS Student · Patient Advocate · Institutional Reform Thinker</div>
+      <div class="int-role">2nd Year · AIIMS Rishikesh — MBBS</div>
+    </div>
+    <div class="int-big-num">06</div>
+  </div>
+  <div class="int-quote">"In a medical institution, a poorly addressed complaint is not just an inconvenience — it can affect patient care and student wellbeing simultaneously. The stakes are different here."</div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">AIIMS is a unique institutional context — medical college, hospital, and research centre combined. How does that change what a complaint portal needs to do?</div>
+    <div class="int-q-answer">The categories of complaint that matter here are different in both nature and urgency. Academic complaints look similar to any engineering college. But we also have clinical posting complaints, which involve patient-care settings: unsafe supervision ratios, inadequate equipment during rounds, inappropriate patient interaction practices. These need a separate, confidential channel that is not visible to clinical supervisors who are simultaneously evaluating us. Then there are wellbeing complaints — mental health support, hostel facilities, the relentless pressure of the MBBS curriculum. A single generic portal cannot handle all three categories with the same interface and the same routing logic.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Anonymity is especially sensitive in a medical college environment. How should the portal handle it differently here?</div>
+    <div class="int-q-answer">Strictly. In a clinical setting, a student who files a complaint about a senior resident or attending physician is in an inherently unequal power relationship. Standard anonymity — hiding the name — is insufficient if the complaint is specific enough to identify the filer. The system should allow students to submit to an independent ombudsperson role, completely outside the departmental chain. The ombudsperson aggregates complaints and raises them without identifying individual sources. Additionally, any complaint involving faculty or clinical supervisor conduct should automatically trigger a note to the student welfare officer, not just the department head.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">What would make the feedback mechanism meaningful in a high-stakes academic environment where students fear retribution?</div>
+    <div class="int-q-answer">Two things above everything else. First, temporal separation — feedback about a faculty member or rotation should only be available to the administration after the student's grades for that posting have been submitted and locked. If a student submits feedback while their internal marks are still pending, the perceived risk of retribution is real regardless of actual anonymity. Second, outcome transparency — publish a semester summary that says 'based on student feedback, these changes were made this semester' with specific attributions. Even one concrete visible change dramatically increases trust and future participation.</div>
+  </div>
+  <div class="int-q">
+    <div class="int-q-label">Q</div>
+    <div class="int-q-text">Would this platform be useful for a medical institution, and what single change would make it most relevant for students like you?</div>
+    <div class="int-q-answer">It would be extremely useful, with one critical addition: a peer support pathway. When a student at a medical college is struggling — with the workload, with clinical stress, with isolation — they rarely go to the administration directly. But they might file a 'wellbeing concern' if there was a clearly separate, compassionate channel that routed to a student wellness counsellor rather than the academic office. Design one category specifically for wellbeing, with different language — not 'submit complaint' but 'share a concern' — and route it to peer mentors and wellness staff.</div>
+  </div>
+  <div class="int-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Interview 6 of 6</span></div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <h1>SUMMARY OF CHANGES<br><span>&amp; PLATFORM IMPROVEMENTS</span></h1>
+  <div class="summary-sub">Based on structured feedback from all six interviews.</div>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-card-num">01</div>
+      <h3>Real-Time Status Tracker with Stage-by-Stage Visibility</h3>
+      <p>Every complaint should display a live progress bar showing stages: Submitted → Assigned → Under Review → Resolved. Students should receive push notifications at each transition. A complaint that moves visibly is a complaint that is trusted. This single feature eliminates the most common frustration expressed across all six interviews.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num">02</div>
+      <h3>Safety-Priority Flag with Accelerated SLA</h3>
+      <p>Add a 'Safety Concern' toggle that students can activate on submission. Safety-flagged complaints must trigger a maximum 24-hour response SLA, compared to the standard 5-day window. Infrastructure complaints — especially from labs, hostels, and clinical environments — require categorically different urgency handling.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num">03</div>
+      <h3>Genuine Anonymity Architecture — Separated at Storage Level</h3>
+      <p>Anonymity must be structural, not cosmetic. Student identity should be stored separately from complaint content with no join key visible in admin views. During submission, display a clear UI confirmation: 'Your identity has been separated from this complaint.' This moment of transparency converts sceptical students into trusting users.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num">04</div>
+      <h3>Discipline-Specific Category Taxonomy</h3>
+      <p>Replace generic categories with a two-tier system. Primary: Academic, Infrastructure, Hostel &amp; Mess, Administrative, Faculty Conduct, Wellbeing. Secondary (per primary): e.g., Infrastructure → Lab Equipment / Electrical / Water Supply / Safety Apparatus. This granularity enables precise routing and produces actionable analytics.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num">05</div>
+      <h3>Trending Complaints Aggregation for Representatives</h3>
+      <p>When multiple students file complaints with overlapping keywords or the same subcategory within a rolling 7-day window, the system should surface a 'Trending Issue' alert to batch/hostel representatives and department coordinators. This transforms fifteen individual tickets into one visible institutional signal that demands a systemic response.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num">06</div>
+      <h3>Temporal Separation of Feedback Release in Academic Contexts</h3>
+      <p>Feedback about faculty or clinical supervisors should be locked and held until the student's grades for the relevant course are officially submitted. This eliminates the fear of retribution — real or perceived — that suppresses honest feedback. Upon grade lock, an automated notification should invite the student to complete pending feedback.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num" style="background:#3a6bb5;">07</div>
+      <h3>Outcome Transparency — Close the Feedback Loop Publicly</h3>
+      <p>After each semester, publish a brief summary visible to all students: 'Based on your feedback, these changes were implemented.' Even two or three concrete attributions — 'Lab hours extended in Block B,' 'Mess menu revised' — validate the entire feedback system. Students who see evidence that feedback leads to change submit feedback more consistently and honestly.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num" style="background:#3a6bb5;">08</div>
+      <h3>Separate Wellbeing Pathway with Compassionate Language</h3>
+      <p>Create a dedicated channel for wellbeing concerns that uses different language ('Share a concern' rather than 'File a complaint') and routes directly to wellness counsellors and peer mentors — not the academic or administrative chain. This is especially critical for high-pressure environments like medical colleges.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num" style="background:#3a6bb5;">09</div>
+      <h3>Photo and Document Attachment for Infrastructure Complaints</h3>
+      <p>A photograph of a broken fume hood or a flooded hostel corridor communicates severity in seconds. Attachment support — photos, PDFs, short videos — should be standard for the Infrastructure and Safety categories from launch, not a V2 feature. Limit file size to 10 MB per submission to keep the system performant.</p>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-num" style="background:#3a6bb5;">10</div>
+      <h3>Mobile-First Interface with Sub-90-Second Submission Flow</h3>
+      <p>The submission flow for a standard complaint — category, brief description, optional photo, submit — must be completable in under 90 seconds on a mobile device. Anything longer and students default to the WhatsApp group. Auto-save drafts to prevent data loss on session timeout. Push notifications, not email, for all status updates.</p>
+    </div>
+  </div>
+  <div class="report-note">This report was prepared as part of an undergraduate Human-Computer Interaction course project. All interview participants provided informed verbal consent. Interviews conducted in March 2026.</div>
+  <div class="summary-footer"><span>HCI PROJECT — Student Complaint &amp; Feedback System</span><span>Summary of Changes &amp; Platform Improvements</span></div>
+</div>
+
+</body>
+</html>
