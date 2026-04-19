@@ -16,7 +16,7 @@ const TEAM = [
   { name: 'SAHIL PAL', roll: '2023IMT-069' },
   { name: 'AMAN KUMAR', roll: '2023IMT-010' },
   { name: 'VISWAJIT SARAK PATIL', roll: '2023IMT-071' },
-  { name: 'ARAVIND VALLIAPPAN SUBRAMANYAM', roll: '2023IMT-018' },
+  { name: 'ARAVIND VALLIAPPAN SUBRAMANYAM', roll: '2023IMT-017' },
 ]
 
 const IMPROVEMENTS = [
