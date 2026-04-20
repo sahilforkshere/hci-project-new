@@ -6,7 +6,8 @@
       "Bash(node server.js)",
       "Bash(curl -s http://localhost:5000/api/auth/login -X POST -H \"Content-Type: application/json\" -d '{\"email\":\"admin@iiitm.ac.in\",\"password\":\"admin123\"}')",
       "Bash(netstat -ano)",
-      "Bash(taskkill //PID 34084 //F)"
+      "Bash(taskkill //PID 34084 //F)",
+      "Bash(npm run *)"
     ]
   }
 }

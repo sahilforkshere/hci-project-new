@@ -40,11 +40,11 @@ export default function Navbar() {
                 🔔
                 {unreadCount > 0 && <span className="notif-badge">{unreadCount}</span>}
               </Link>
-              <div className="nav-user">
+              <Link to="/profile" className="nav-user" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none' }}>
                 <span className="user-avatar">{currentUser.name[0]}</span>
                 <span className="user-name">{currentUser.name}</span>
                 {currentUser.isAdmin && <span className="admin-tag">Admin</span>}
-              </div>
+              </Link>
               <button className="btn btn-outline-white btn-sm" onClick={handleLogout}>Logout</button>
             </>
           ) : (
