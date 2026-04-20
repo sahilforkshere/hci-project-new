@@ -4,19 +4,19 @@ const AppContext = createContext()
 
 const STAGES = ['Submitted', 'Assigned', 'Under Review', 'Resolved']
 
-const DEMO_USERS = [
+const SEED_USERS = [
   { id: 'admin-1', name: 'Admin', email: 'admin@iiitm.ac.in', password: 'admin123', rollNo: 'ADMIN', department: 'Administration', year: '-', isAdmin: true },
-  { id: 'user-1', name: 'Sahil Pal', email: 'sahil@iiitm.ac.in', password: 'student123', rollNo: '2023IMT-069', department: 'CSE', year: '3rd', isAdmin: false },
-  { id: 'user-2', name: 'Rohit Singh', email: 'rohit@iiitm.ac.in', password: 'student123', rollNo: '2023IMT-045', department: 'CSE', year: '3rd', isAdmin: false },
-  { id: 'user-3', name: 'Aman Gupta', email: 'aman@iiitm.ac.in', password: 'student123', rollNo: '2023IMT-012', department: 'CSE', year: '3rd', isAdmin: false },
+  { id: 'user-1', name: 'Prasanna Mishra', email: 'prasanna@iiitm.ac.in', password: 'student123', rollNo: '2023IMT-031', department: 'CSE', year: '3rd', isAdmin: false },
+  { id: 'user-2', name: 'Malladi Nagarjuna', email: 'nagarjuna@iiitm.ac.in', password: 'student123', rollNo: '2023IMT-047', department: 'CSE', year: '3rd', isAdmin: false },
+  { id: 'user-3', name: 'Arnav Khonde', email: 'arnav@iiitm.ac.in', password: 'student123', rollNo: '2023IMT-008', department: 'ECE', year: '3rd', isAdmin: false },
 ]
 
 const now = new Date()
 const daysAgo = (d) => new Date(now - d * 86400000).toISOString()
 
-const DEMO_COMPLAINTS = [
+const SEED_COMPLAINTS = [
   {
-    id: 'CMP-001', userId: 'user-1', userName: 'Sahil Pal',
+    id: 'CMP-001', userId: 'user-1', userName: 'Prasanna Mishra',
     category: 'Infrastructure', subcategory: 'Lab Equipment',
     title: 'Broken projector in CS Lab 3',
     description: 'The projector in CS Lab 3 has been non-functional for 2 weeks, severely affecting practical sessions.',
@@ -30,7 +30,7 @@ const DEMO_COMPLAINTS = [
     assignedTo: 'IT Department', createdAt: daysAgo(10), updatedAt: daysAgo(7), votes: 8,
   },
   {
-    id: 'CMP-002', userId: 'user-2', userName: 'Rohit Singh',
+    id: 'CMP-002', userId: 'user-2', userName: 'Malladi Nagarjuna',
     category: 'Hostel & Mess', subcategory: 'Mess Food Quality',
     title: 'Poor food quality in mess this week',
     description: 'Food served in the main mess is consistently undercooked and cold. Affects all hostel students.',
@@ -58,7 +58,7 @@ const DEMO_COMPLAINTS = [
     assignedTo: 'Estate Office', createdAt: daysAgo(2), updatedAt: daysAgo(1), votes: 3,
   },
   {
-    id: 'CMP-004', userId: 'user-1', userName: 'Sahil Pal',
+    id: 'CMP-004', userId: 'user-1', userName: 'Prasanna Mishra',
     category: 'Academic', subcategory: 'Assessment Fairness',
     title: 'Mid-semester marks not updated on portal',
     description: 'Mid-semester exam marks for Data Structures have not been uploaded to the academic portal despite 3 weeks passing.',
@@ -69,9 +69,36 @@ const DEMO_COMPLAINTS = [
     ],
     assignedTo: null, createdAt: daysAgo(1), updatedAt: daysAgo(1), votes: 6,
   },
+  {
+    id: 'CMP-005', userId: 'user-2', userName: 'Malladi Nagarjuna',
+    category: 'Infrastructure', subcategory: 'Electrical',
+    title: 'Power fluctuation in Hostel Block C',
+    description: 'Frequent power cuts and voltage fluctuations in Block C rooms are damaging electronic devices.',
+    priority: 'High', isSafety: false, isAnonymous: false,
+    status: 'Assigned',
+    statusHistory: [
+      { stage: 'Submitted', time: daysAgo(5), note: 'Complaint received and logged.' },
+      { stage: 'Assigned', time: daysAgo(4), note: 'Assigned to Estate Office.' },
+    ],
+    assignedTo: 'Estate Office', createdAt: daysAgo(5), updatedAt: daysAgo(4), votes: 11,
+  },
+  {
+    id: 'CMP-006', userId: 'user-3', userName: 'Arnav Khonde',
+    category: 'Academic', subcategory: 'Lab Scheduling',
+    title: 'ECE lab sessions overlapping with core lectures',
+    description: 'The timetable for ECE lab sessions has multiple clashes with mandatory theory lectures this semester.',
+    priority: 'Medium', isSafety: false, isAnonymous: false,
+    status: 'Under Review',
+    statusHistory: [
+      { stage: 'Submitted', time: daysAgo(8), note: 'Complaint received and logged.' },
+      { stage: 'Assigned', time: daysAgo(7), note: 'Assigned to Academic Office.' },
+      { stage: 'Under Review', time: daysAgo(5), note: 'Timetable committee reviewing schedule conflicts.' },
+    ],
+    assignedTo: 'Academic Office', createdAt: daysAgo(8), updatedAt: daysAgo(5), votes: 9,
+  },
 ]
 
-const DEMO_FEEDBACK = [
+const SEED_FEEDBACK = [
   {
     id: 'FB-001', userId: 'user-1',
     targetType: 'Faculty', targetName: 'Prof. Sharma — Data Structures',
@@ -79,31 +106,47 @@ const DEMO_FEEDBACK = [
     comment: 'Great teaching style, but needs more practice problems before exams.',
     isAnonymous: true, createdAt: daysAgo(5),
   },
+  {
+    id: 'FB-002', userId: 'user-2',
+    targetType: 'Facility', targetName: 'Main Mess',
+    rating: 2, aspects: ['Food Quality', 'Hygiene'],
+    comment: 'Food quality has declined significantly over the past month.',
+    isAnonymous: false, createdAt: daysAgo(12),
+  },
 ]
 
-const DEMO_NOTIFICATIONS = [
+const SEED_NOTIFICATIONS = [
   { id: 'N-001', userId: 'user-1', message: 'Your complaint CMP-001 has been assigned to IT Department.', type: 'update', read: false, createdAt: daysAgo(9) },
   { id: 'N-002', userId: 'user-2', message: 'Your complaint CMP-002 has been resolved. Menu revised and new chef appointed.', type: 'resolved', read: false, createdAt: daysAgo(15) },
   { id: 'N-003', userId: 'user-3', message: 'Safety complaint CMP-003 has been assigned to Estate Office for urgent inspection.', type: 'update', read: true, createdAt: daysAgo(1) },
 ]
+
+const DATA_VERSION = 'v3'
 
 function load(key) {
   try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null } catch { return null }
 }
 function save(key, val) { localStorage.setItem(key, JSON.stringify(val)) }
 
-function initStore(key, demo) {
+// Clear stale data if version changed
+if (load('hci_data_version') !== DATA_VERSION) {
+  ['hci_complaints', 'hci_feedback', 'hci_notifications', 'hci_user'].forEach(k => localStorage.removeItem(k))
+  save('hci_data_version', DATA_VERSION)
+}
+
+function initStore(key, seed) {
   const existing = load(key)
   if (existing) return existing
-  save(key, demo)
-  return demo
+  save(key, seed)
+  return seed
 }
 
 export function AppProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(() => load('hci_user'))
-  const [complaints, setComplaints] = useState(() => initStore('hci_complaints', DEMO_COMPLAINTS))
-  const [feedbackList, setFeedbackList] = useState(() => initStore('hci_feedback', DEMO_FEEDBACK))
-  const [notifications, setNotifications] = useState(() => initStore('hci_notifications', DEMO_NOTIFICATIONS))
+  const [registeredUsers, setRegisteredUsers] = useState(() => load('hci_registered_users') || [])
+  const [complaints, setComplaints] = useState(() => initStore('hci_complaints', SEED_COMPLAINTS))
+  const [feedbackList, setFeedbackList] = useState(() => initStore('hci_feedback', SEED_FEEDBACK))
+  const [notifications, setNotifications] = useState(() => initStore('hci_notifications', SEED_NOTIFICATIONS))
 
   const persistComplaints = (data) => { setComplaints(data); save('hci_complaints', data) }
   const persistFeedback = (data) => { setFeedbackList(data); save('hci_feedback', data) }
@@ -116,9 +159,22 @@ export function AppProvider({ children }) {
     return updated
   }
 
+  const allUsers = [...SEED_USERS, ...registeredUsers]
+
   const login = (email, password) => {
-    const user = DEMO_USERS.find(u => u.email === email && u.password === password)
+    const user = allUsers.find(u => u.email === email && u.password === password)
     if (!user) return { success: false, error: 'Invalid email or password.' }
+    setCurrentUser(user)
+    save('hci_user', user)
+    return { success: true, user }
+  }
+
+  const register = (data) => {
+    if (allUsers.find(u => u.email === data.email)) return { success: false, error: 'Email already registered.' }
+    const user = { ...data, id: `user-${Date.now()}`, isAdmin: false }
+    const updated = [...registeredUsers, user]
+    setRegisteredUsers(updated)
+    save('hci_registered_users', updated)
     setCurrentUser(user)
     save('hci_user', user)
     return { success: true, user }
@@ -190,7 +246,7 @@ export function AppProvider({ children }) {
 
   return (
     <AppContext.Provider value={{
-      currentUser, login, logout,
+      currentUser, login, register, logout,
       complaints, myComplaints, submitComplaint, updateStatus, escalateComplaint, voteComplaint,
       feedbackList, submitFeedback,
       notifications, myNotifications, unreadCount, markRead, markAllRead,
